@@ -2,6 +2,7 @@
 @import '~noty/src/noty.scss';
 @import '~noty/src/themes/mint.scss';
 
+
 body {
     font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -74,4 +75,8 @@ section.login {
 .noty_theme__mint {
     border-radius: 50px!important;
     padding-left:80px!important;
+}
+
+a.link {
+    color: $primary;
 }
