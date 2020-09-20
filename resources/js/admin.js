@@ -1,25 +1,22 @@
 import axios from 'axios'
 import moment from 'moment'
-import init from '../../app/config/passport'
 
-
-
-function initAdmin() {
+export function initAdmin() {
     const orderTableBody = document.querySelector('#orderTableBody')
     let orders = []
-    let markup 
+    let markup
+
     axios.get('/admin/orders', {
         headers: {
             "X-Requested-With": "XMLHttpRequest"
-        }.then(res => {
-            orders = res.data
-            markup = generateMarkup(orders)
-            orderTableBody.innerHTML = markup
-        }).catch(err => {
-            console,log(err)
-        })
+        }
+    }).then(res => {
+        orders = res.data
+        markup = generateMarkup(orders)
+        orderTableBody.innerHTML = markup
+    }).catch(err => {
+        console.log(err)
     })
-
 
     function renderItems(items) {
         let parsedItems = Object.values(items)
@@ -79,5 +76,3 @@ function initAdmin() {
         }).join('')
     }
 }
-
-module.exports = initAdmin
