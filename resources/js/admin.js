@@ -1,7 +1,9 @@
 import axios from 'axios'
 import moment from 'moment'
+import { Socket } from 'socket.io'
+import Noty from 'noty'
 
-export function initAdmin() {
+export function initAdmin(socket) {
     const orderTableBody = document.querySelector('#orderTableBody')
     let orders = []
     let markup
@@ -22,11 +24,11 @@ export function initAdmin() {
         let parsedItems = Object.values(items)
         return parsedItems.map((menuItem) => {
             return `
-                <p>${ menuItem.item.name } - ${ menuItem.qty } pcs </p>
+                <p>${ menuItem.items.name } - ${ menuItem.qty } pcs </p>
             `
         }).join('')
-      }
-
+    }
+    
     function generateMarkup(orders) {
         return orders.map(order => {
             return `
@@ -75,4 +77,16 @@ export function initAdmin() {
         `
         }).join('')
     }
+    Socket.on('orderPlaced', (order) => {
+        new Noty ({
+            type:'success',
+            timeout: 1000,
+            text: 'New order!',
+            progressBar: false,
+            layout: 'topLeft'
+        }).show();
+        order.unshift(order)
+        orderTableBody.innerHTML = ''
+        orderTableBody.innerHTML = generateMarkup(orders)
+    })
 }
