@@ -3,6 +3,7 @@ import Noty from 'noty'
 import { initAdmin } from './admin';
 import  moment from 'moment';
 
+
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
 
@@ -97,7 +98,7 @@ if(adminAreaPath.includes('admin')) {
     socket.emit('join', 'adminRoom')
 }
 
-socket.on('orderUpdated', () => {
+socket.on('orderUpdated', (data) => {
     const updatedOrder = {...order }
     updatedOrder.updatedAt = moment().format()
     updatedOrder.status = data.status
@@ -105,7 +106,7 @@ socket.on('orderUpdated', () => {
     new Noty ({
         type:'success',
         timeout: 1000,
-        text: 'Order updated successfully!!',
+        text: 'Order updated successfully!',
         progressBar: false,
         layout: 'topLeft'
     }).show();

@@ -1,5 +1,6 @@
 const Order = require('../../../models/order')
 const moment = require('moment')
+const path = require('path')
 
 function orderController() {
     return {
@@ -17,7 +18,7 @@ function orderController() {
                address 
             })
             order.save().then(result => {
-                Order.populate(result, {path: 'customerId'}, (err, placedOrder) =>{
+                Order.populate(result, { path: 'customerId'}, (err, placedOrder) =>{
                 req.flash('success', 'Order placed successfully!')
                 delete req.session.cart
                  //  Emit the event 
