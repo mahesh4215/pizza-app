@@ -184,7 +184,7 @@ section.status {
     color: $primary;
 }
 
-.status-box ul li.current:after {
+.status-box ul li.current span:after {
     background: $primary;
 }
 
@@ -192,4 +192,17 @@ section.status {
     float: right;
     font-size: 14px;
     margin-top: 8px;
+}
+
+@media(max-width: 1060px) {
+    .container {
+        max-width: 90%;
+    }
+
+    table {
+
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
