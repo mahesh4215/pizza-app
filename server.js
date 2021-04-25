@@ -24,7 +24,8 @@ const passport = require('passport')
 const Emitter = require('events')
 
 //  database connection
-const url = 'mongodb://localhost/pizza';
+const url = 'mongodb+srv://mahesh:chomu@cluster0.5w8ti.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+// const url = 'mongodb://localhost/pizza';
 mongoose.connect(url, { useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify: true});
 const connection = mongoose.connection;
 connection.once('open', () => { 
